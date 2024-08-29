@@ -28,7 +28,7 @@ const Leaderboard = ({ setRoute }) => {
           <ArrowBigRight />
         </button>
       </header>
-      {data && (
+      {data && data.length > 0 ? (
         <>
           <ol className="leaderboard-list" role="list">
             {data.map((entry, i) => (
@@ -41,6 +41,8 @@ const Leaderboard = ({ setRoute }) => {
           </ol>
           {!moreShown && <button onClick={handleClick}>show more</button>}
         </>
+      ) : (
+        <p>Leaderboard is empty. Be first!</p>
       )}
     </main>
   );
