@@ -5,11 +5,14 @@ import useFetch from "./useFetch";
 import AddToLeaderboard from "./AddToLeaderboard";
 import { Circle } from "lucide-react";
 import formattedTime from "./lib/time";
+import { func } from "prop-types";
 
 const EXPECTED_WIDTH = 3000;
 const EXPECTED_HEIGHT = 2000;
 
-export default function Game({ setRoute }) {
+// ! this is awful, but this project isn't interesting enough for me to refactor it. I'm sorry
+
+const Game = ({ setRoute }) => {
   const dialogRef = useRef(null);
   function closeDialog() {
     dialogRef.current?.close();
@@ -117,4 +120,9 @@ export default function Game({ setRoute }) {
       </dialog>
     </div>
   );
-}
+};
+Game.propTypes = {
+  setRoute: func,
+};
+
+export default Game;
