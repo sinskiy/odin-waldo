@@ -15,8 +15,8 @@ beforeAll(async () => {
 
 describe("get leaderboard correctly", () => {
   it("get full leaderboard correctly", async () => {
-    const target = await getLeaderboardByTime();
-    expect(target).toStrictEqual([
+    const leaderboard = await getLeaderboardByTime();
+    expect(leaderboard).toStrictEqual([
       { username: "bot", time: 1 },
       { username: "sinskiy", time: 20 },
       { username: "kilwinta", time: 200 },
@@ -24,8 +24,8 @@ describe("get leaderboard correctly", () => {
   });
 
   it("get leaderboard with limit correctly", async () => {
-    const target2 = await getLeaderboardByTime(1);
-    expect(target2).toStrictEqual([{ username: "bot", time: 1 }]);
+    const leaderboard2 = await getLeaderboardByTime(1);
+    expect(leaderboard2).toStrictEqual([{ username: "bot", time: 1 }]);
   });
 });
 
