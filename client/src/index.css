@@ -60,7 +60,7 @@ button {
 
 .card {
   padding: 1rem;
-  width: fit-content;
+  width: clamp(8rem, 40vw, 17rem);
   border: 1px solid var(--outline);
   border-radius: var(--rounded-card);
   background-color: var(--surface);
@@ -82,7 +82,6 @@ button {
 
 .image-select {
   position: relative;
-  text-align: center;
 }
 
 .image-select figure {
@@ -91,9 +90,8 @@ button {
   font-size: 1rem;
 }
 .image-select img {
-  width: fit-content;
+  width: 100%;
   max-height: 7rem;
-  margin: auto;
   margin-bottom: 0.5rem;
 }
 
