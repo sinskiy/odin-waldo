@@ -3,7 +3,7 @@ import Dropdown from "./Dropdown";
 import TargetsForm from "./TargetsForm";
 import useFetch from "./useFetch";
 import AddToLeaderboard from "./AddToLeaderboard";
-import { Check, X } from "lucide-react";
+import { Circle } from "lucide-react";
 
 const EXPECTED_WIDTH = 3000;
 const EXPECTED_HEIGHT = 2000;
@@ -17,12 +17,9 @@ export default function Game() {
   const [clickCoordsHistory, setClickCoordsHistory] = useState([]);
 
   const { data, error, fetchData } = useFetch();
-  function getTarget() {
-    fetchData();
-    setClickCoordsHistory((history) => [
-      ...history,
-      [...dropdownCoords, data ? true : false],
-    ]);
+  function getTarget(...args) {
+    setClickCoordsHistory([...clickCoordsHistory, dropdownCoords]);
+    fetchData(...args);
   }
 
   const [guessed, setGuessed] = useState([]);
@@ -63,18 +60,12 @@ export default function Game() {
       <ul aria-label="clicks history">
         {clickCoordsHistory.map((click, i) => (
           <li
-            aria-label={
-              click.slice(0, -1) + `, ${click[2] ? "match" : "not match"}`
-            }
+            aria-label={click}
             key={i}
             className="click"
             style={{ transform: `translate(${click[0]}px,${click[1]}px)` }}
           >
-            {click[2] ? (
-              <Check size={36} strokeWidth={6} color="rgb(0 255 0)" />
-            ) : (
-              <X size={48} strokeWidth={4} color="red" fill="red" />
-            )}
+            <Circle size={48} strokeWidth={4} color="white" />
           </li>
         ))}
       </ul>
