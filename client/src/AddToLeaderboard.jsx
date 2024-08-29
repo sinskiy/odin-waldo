@@ -1,11 +1,11 @@
 import { number } from "prop-types";
-import time from "./lib/time";
+import formattedTime from "./lib/time";
 
 const AddToLeaderboard = ({ timeMs }) => {
   return (
     <form method="post" className="add-to-leaderboard">
       <h2>
-        your time is <em>{time(timeMs)}</em>
+        your time is <em>{formattedTime(timeMs)}</em>
       </h2>
       <div className="input-entry">
         <label htmlFor="username">username</label>

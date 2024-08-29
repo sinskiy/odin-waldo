@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Dropdown from "./Dropdown";
 import TargetsForm from "./TargetsForm";
 import useFetch from "./useFetch";
 import AddToLeaderboard from "./AddToLeaderboard";
 import { Circle } from "lucide-react";
+import formattedTime from "./lib/time";
 
 const EXPECTED_WIDTH = 3000;
 const EXPECTED_HEIGHT = 2000;
@@ -11,12 +12,20 @@ const EXPECTED_HEIGHT = 2000;
 export default function Game() {
   const dialogRef = useRef(null);
 
+  const timerRef = useRef(null);
+  const [time, setTime] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => setTime((time) => time + 1000), 1000);
+    timerRef.current = timer;
+    return () => clearInterval(timer);
+  }, []);
+
   const [dropdownShown, setDropdownShown] = useState(false);
   const [dropdownCoords, setDropdownCoords] = useState([0, 0]);
   const [agnosticCoords, setAgnosticCoords] = useState([null, null]);
   const [clickCoordsHistory, setClickCoordsHistory] = useState([]);
 
-  const { data, error, fetchData } = useFetch();
+  const { data, fetchData } = useFetch();
   function getTarget(...args) {
     setClickCoordsHistory([...clickCoordsHistory, dropdownCoords]);
     fetchData(...args);
@@ -28,6 +37,7 @@ export default function Game() {
   }
   if (guessed.length === 3) {
     dialogRef.current?.showModal();
+    clearInterval(timerRef.current);
   }
 
   function handleClick(event) {
@@ -73,6 +83,7 @@ export default function Game() {
         <div className="card topbar-entry" aria-live="polite">
           {guessed.length}/3
         </div>
+        <div className="card topbar-entry">{formattedTime(time)}</div>
       </div>
       {dropdownShown && (
         <Dropdown dropdownCoords={dropdownCoords}>
@@ -86,7 +97,7 @@ export default function Game() {
         </Dropdown>
       )}
       <dialog ref={dialogRef}>
-        <AddToLeaderboard timeMs={5000} />
+        <AddToLeaderboard timeMs={time} />
       </dialog>
     </div>
   );
