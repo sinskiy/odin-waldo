@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useFetch from "./useFetch";
 import "./leaderboard.css";
 import formattedTime from "./lib/time";
@@ -10,6 +10,12 @@ const Leaderboard = ({ setRoute }) => {
   useEffect(() => {
     fetchData("/leaderboard?limit=10");
   }, []);
+
+  const [moreShown, setMoreShown] = useState(false);
+  function handleClick() {
+    setMoreShown(true);
+    fetchData("/leaderboard");
+  }
 
   if (isLoading) return <p>loading...</p>;
   if (error) return <p>{error}</p>;
@@ -23,15 +29,18 @@ const Leaderboard = ({ setRoute }) => {
         </button>
       </header>
       {data && (
-        <ol className="leaderboard-list" role="list">
-          {data.map((entry, i) => (
-            <li key={i}>
-              <span className="rank">{i + 1}.</span>
-              <span className="username"> {entry.username}</span>
-              <span className="time"> ({formattedTime(entry.time)})</span>
-            </li>
-          ))}
-        </ol>
+        <>
+          <ol className="leaderboard-list" role="list">
+            {data.map((entry, i) => (
+              <li key={i}>
+                <span className="rank">{i + 1}.</span>
+                <span className="username"> {entry.username}</span>
+                <span className="time"> ({formattedTime(entry.time)})</span>
+              </li>
+            ))}
+          </ol>
+          {!moreShown && <button onClick={handleClick}>show more</button>}
+        </>
       )}
     </main>
   );
