@@ -13,7 +13,7 @@ beforeAll(async () => {
   }
 });
 
-describe("get matching targets correctly", () => {
+describe("get leaderboard correctly", () => {
   it("get full leaderboard correctly", async () => {
     const target = await getLeaderboardByTime();
     expect(target).toStrictEqual([
