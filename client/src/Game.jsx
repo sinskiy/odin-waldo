@@ -44,6 +44,11 @@ export default function Game() {
         onClick={handleClick}
         className="game-image"
       />
+      <div className="topbar">
+        <div className="card topbar-entry" aria-live="polite">
+          {guessed.length}/3
+        </div>
+      </div>
       {dropdownShown && (
         <Dropdown x={dropdownCoords[0]} y={dropdownCoords[1]}>
           <TargetsForm

@@ -55,6 +55,18 @@ button {
   min-width: 1890px;
 }
 
+.topbar {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.topbar-entry {
+  max-width: fit-content;
+  background-color: var(--surface);
+}
+
 .card {
   padding: 1rem;
   width: clamp(8rem, 40vw, 17rem);
