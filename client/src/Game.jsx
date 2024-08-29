@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Dropdown from "./Dropdown";
 import TargetsForm from "./TargetsForm";
+import useFetch from "./useFetch";
 
 const EXPECTED_WIDTH = 3000;
 const EXPECTED_HEIGHT = 2000;
@@ -8,10 +9,18 @@ const EXPECTED_HEIGHT = 2000;
 export default function Game() {
   const [dropdownShown, setDropdownShown] = useState(false);
   const [dropdownCoords, setDropdownCoords] = useState([0, 0]);
+  const [agnosticCoords, setAgnosticCoords] = useState([null, null]);
+
+  const { data, error, fetchData } = useFetch();
   function handleClick(event) {
-    const [x, y] = getAgnosticCoords(event);
     setDropdownShown(!dropdownShown);
     setDropdownCoords(getDropdownCoords(event));
+
+    setAgnosticCoords(getAgnosticCoords(event));
+  }
+  function getDropdownCoords(event) {
+    const { clientX, clientY } = event;
+    return [clientX, clientY];
   }
   function getAgnosticCoords(event) {
     const { left, top, width, height } = event.target.getBoundingClientRect();
@@ -22,20 +31,21 @@ export default function Game() {
     const agnosticY = (EXPECTED_HEIGHT / height) * y;
     return [agnosticX, agnosticY];
   }
-  function getDropdownCoords(event) {
-    const { clientX, clientY } = event;
-    return [clientX, clientY];
-  }
   return (
     <div>
       <img
         src="/pixelbattle2023.png"
         alt="screen readers are not supported"
         onClick={handleClick}
+        className="game-image"
       />
       {dropdownShown && (
         <Dropdown x={dropdownCoords[0]} y={dropdownCoords[1]}>
-          <TargetsForm />
+          <TargetsForm
+            x={agnosticCoords[0]}
+            y={agnosticCoords[1]}
+            fetchData={fetchData}
+          />
         </Dropdown>
       )}
     </div>

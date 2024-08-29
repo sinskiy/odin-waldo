@@ -1,8 +1,13 @@
+import { func, number } from "prop-types";
 import Target from "./Target";
 
-const TargetsForm = () => {
+const TargetsForm = ({ x, y, fetchData }) => {
+  function handleSubmit(event) {
+    event.preventDefault();
+    fetchData(`/target?x=${x}&y=${y}`);
+  }
   return (
-    <form className="targets-form">
+    <form method="post" onSubmit={handleSubmit} className="targets-form">
       <Target
         label="leinster-coat-of-arms"
         src="leinster-coat-of-arms.svg"
@@ -13,6 +18,11 @@ const TargetsForm = () => {
       <button type="submit">submit</button>
     </form>
   );
+};
+TargetsForm.propTypes = {
+  x: number,
+  y: number,
+  fetchData: func,
 };
 
 export default TargetsForm;
