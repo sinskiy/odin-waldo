@@ -38,7 +38,10 @@ body {
   color: var(--text);
   accent-color: var(--primary);
 
-  margin: 0 12rem 26rem 0;
+  width: fit-content;
+  margin-bottom: 26rem;
+  /* margin doesn't work */
+  padding-right: 12rem;
 }
 
 button {
@@ -79,15 +82,19 @@ button {
 
 .image-select {
   position: relative;
+  text-align: center;
 }
 
 .image-select figure {
   border-radius: var(--rounded-card);
   padding: 0.5rem;
+  font-size: 1rem;
 }
 .image-select img {
-  max-height: 5rem;
+  width: fit-content;
+  max-height: 7rem;
   margin: auto;
+  margin-bottom: 0.5rem;
 }
 
 .image-select > input {
