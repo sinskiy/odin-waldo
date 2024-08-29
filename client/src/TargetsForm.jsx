@@ -25,6 +25,7 @@ const TargetsForm = ({ agnosticCoords, fetchData, guessed }) => {
   ];
   return (
     <form method="post" onSubmit={handleSubmit} className="targets-form">
+      <button type="submit">submit</button>
       {targets.map((target) => (
         <Target
           key={target.label}
@@ -34,7 +35,6 @@ const TargetsForm = ({ agnosticCoords, fetchData, guessed }) => {
           disabled={guessed.includes(target.label)}
         />
       ))}
-      <button type="submit">submit</button>
     </form>
   );
 };
