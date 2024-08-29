@@ -3,7 +3,7 @@ import { string } from "prop-types";
 const Target = ({ label, src, text }) => {
   return (
     <div className="image-select">
-      <input type="radio" name={label} id={label} />
+      <input type="radio" name="target" id={label} />
       <label htmlFor={label}>
         <figure>
           <img src={src} alt="" />
