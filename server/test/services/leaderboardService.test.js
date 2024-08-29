@@ -1,6 +1,9 @@
 import { afterAll, beforeAll, describe, expect, it } from "@jest/globals";
 import pool from "../../src/configs/db.js";
-import { getLeaderboardByTime } from "../../src/services/leaderboardService.js";
+import {
+  addLeaderboardEntry,
+  getLeaderboardByTime,
+} from "../../src/services/leaderboardService.js";
 
 beforeAll(async () => {
   try {
@@ -26,6 +29,17 @@ describe("get leaderboard correctly", () => {
   it("get leaderboard with limit correctly", async () => {
     const leaderboard2 = await getLeaderboardByTime(1);
     expect(leaderboard2).toStrictEqual([{ username: "bot", time: 1 }]);
+  });
+});
+
+describe("add leaderboard entries correctly", () => {
+  it("add normal entry correctly", async () => {
+    expect(await addLeaderboardEntry("bot", 2)).toBeUndefined();
+    const leaderboard3 = await getLeaderboardByTime(2);
+    expect(leaderboard3).toStrictEqual([
+      { username: "bot", time: 1 },
+      { username: "bot", time: 2 },
+    ]);
   });
 });
 

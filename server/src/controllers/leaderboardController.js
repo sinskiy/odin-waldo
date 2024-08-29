@@ -1,4 +1,7 @@
-import { getLeaderboardByTime } from "../services/leaderboardService.js";
+import {
+  addLeaderboardEntry,
+  getLeaderboardByTime,
+} from "../services/leaderboardService.js";
 
 export async function leaderboardGet(req, res, next) {
   const { limit } = req.query;
@@ -10,4 +13,12 @@ export async function leaderboardGet(req, res, next) {
   }
 }
 
-export async function leaderboardPost(req, res) {}
+export async function leaderboardPost(req, res, next) {
+  const { username, time } = req.body;
+  try {
+    await addLeaderboardEntry(username, Number(time));
+    res.status(201).json({ message: "ok" });
+  } catch (err) {
+    next(err);
+  }
+}

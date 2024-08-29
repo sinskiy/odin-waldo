@@ -9,3 +9,10 @@ export async function getLeaderboardByTime(limit = false) {
   const leaderboard = result.rows;
   return leaderboard;
 }
+
+export async function addLeaderboardEntry(username, time) {
+  await pool.query("INSERT INTO leaderboard (username, time) VALUES ($1, $2)", [
+    username,
+    time,
+  ]);
+}
