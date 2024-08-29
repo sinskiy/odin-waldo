@@ -51,6 +51,10 @@ button {
 }
 
 /* global classes */
+.game-image {
+  min-width: 1890px;
+}
+
 .card {
   padding: 1rem;
   width: fit-content;
