@@ -9,7 +9,7 @@ import formattedTime from "./lib/time";
 const EXPECTED_WIDTH = 3000;
 const EXPECTED_HEIGHT = 2000;
 
-export default function Game() {
+export default function Game({ setRoute }) {
   const dialogRef = useRef(null);
   function closeDialog() {
     dialogRef.current?.close();
@@ -89,6 +89,17 @@ export default function Game() {
           {guessed.length}/3
         </div>
         <div className="card topbar-entry">{formattedTime(time)}</div>
+        <div
+          className="card topbar-entry"
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <button
+            onClick={() => setRoute("leaderboard")}
+            className="button-link"
+          >
+            leaderboard
+          </button>
+        </div>
       </div>
       {dropdownShown && (
         <Dropdown dropdownCoords={dropdownCoords}>

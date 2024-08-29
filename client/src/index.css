@@ -98,6 +98,13 @@ dialog h2 {
   background-color: var(--surface);
 }
 
+.button-link {
+  background-color: transparent;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+}
+
 .card {
   padding: 1rem;
   width: clamp(8rem, 40vw, 17rem);
