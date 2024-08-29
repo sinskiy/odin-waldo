@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Dropdown from "./Dropdown";
 import TargetsForm from "./TargetsForm";
 import useFetch from "./useFetch";
+import AddToLeaderboard from "./AddToLeaderboard";
 
 const EXPECTED_WIDTH = 3000;
 const EXPECTED_HEIGHT = 2000;
 
 export default function Game() {
+  const dialogRef = useRef(null);
+
   const [dropdownShown, setDropdownShown] = useState(false);
   const [dropdownCoords, setDropdownCoords] = useState([0, 0]);
   const [agnosticCoords, setAgnosticCoords] = useState([null, null]);
@@ -15,6 +18,9 @@ export default function Game() {
   const [guessed, setGuessed] = useState([]);
   if (data && !guessed.includes(data.name)) {
     setGuessed([...guessed, data.name]);
+  }
+  if (guessed.length === 3) {
+    dialogRef.current?.showModal();
   }
 
   function handleClick(event) {
@@ -59,6 +65,9 @@ export default function Game() {
           />
         </Dropdown>
       )}
+      <dialog ref={dialogRef}>
+        <AddToLeaderboard timeMs={5000} />
+      </dialog>
     </div>
   );
 }

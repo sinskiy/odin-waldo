@@ -48,6 +48,26 @@ button {
   background-color: var(--primary);
   color: var(--on-primary);
   font-weight: 500;
+  transition: opacity 150ms;
+}
+button:hover {
+  opacity: 0.8;
+}
+
+label {
+  font-weight: 500;
+}
+
+dialog {
+  margin: auto;
+  padding: 2rem;
+  border: none;
+  border-radius: var(--rounded-card);
+  background-color: var(--surface);
+}
+
+dialog h2 {
+  text-align: center;
 }
 
 /* global classes */
@@ -114,6 +134,27 @@ button {
 }
 .image-select > input:disabled + label > figure {
   opacity: 0.5;
+}
+
+.add-to-leaderboard {
+  display: grid;
+  gap: 1rem;
+}
+.input-entry {
+  display: grid;
+  gap: 0.5rem;
+}
+.input-entry > input {
+  padding: 0.5rem 2rem;
+  border: none;
+  outline: 1px solid var(--outline);
+  background-color: var(--surface-high);
+  color: var(--text);
+  border-radius: var(--rounded-card);
+  font-size: 2rem;
+}
+.input-entry > input:focus {
+  outline: 2px solid var(--primary);
 }
 
 /* dark mode variables */
