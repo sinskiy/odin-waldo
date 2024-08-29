@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { checkTarget } from "../controllers/targetController";
+import { targetGet } from "../controllers/targetController";
 const targetRouter = Router();
 
-targetRouter.get("/", checkTarget);
+targetRouter.get("/", targetGet);
 
 export default targetRouter;

@@ -1,1 +1,1 @@
-export async function checkTarget(req, res) {}
+export async function targetGet(req, res) {}

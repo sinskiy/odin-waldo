@@ -1,11 +1,11 @@
 import { Router } from "express";
 import {
-  getLeaderboard,
-  postLeaderboardEntry,
+  leaderboardGet,
+  leaderboardPost,
 } from "../controllers/leaderboardController";
 const leaderboardRouter = Router();
 
-leaderboardRouter.get("/", getLeaderboard);
-leaderboardRouter.post("/", postLeaderboardEntry);
+leaderboardRouter.get("/", leaderboardGet);
+leaderboardRouter.post("/", leaderboardPost);
 
 export default leaderboardRouter;
