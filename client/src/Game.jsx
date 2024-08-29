@@ -20,6 +20,7 @@ const Game = ({ setRoute }) => {
 
   const timerRef = useRef(null);
   const [time, setTime] = useState(0);
+  const [finished, setFinished] = useState(false);
   useEffect(() => {
     const timer = setInterval(() => setTime((time) => time + 1000), 1000);
     timerRef.current = timer;
@@ -44,9 +45,14 @@ const Game = ({ setRoute }) => {
   if (guessed.length === 3) {
     dialogRef.current?.showModal();
     clearInterval(timerRef.current);
+    if (!finished) {
+      setFinished(true);
+    }
   }
 
   function handleClick(event) {
+    if (finished) return;
+
     setDropdownShown(!dropdownShown);
     setDropdownCoords(getDropdownCoords(event));
 
