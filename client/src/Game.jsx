@@ -24,8 +24,8 @@ export default function Game() {
     setAgnosticCoords(getAgnosticCoords(event));
   }
   function getDropdownCoords(event) {
-    const { clientX, clientY } = event;
-    return [clientX, clientY];
+    const { pageX, pageY } = event;
+    return [pageX, pageY];
   }
   function getAgnosticCoords(event) {
     const { left, top, width, height } = event.target.getBoundingClientRect();

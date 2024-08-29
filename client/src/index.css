@@ -39,9 +39,6 @@ body {
   accent-color: var(--primary);
 
   width: fit-content;
-  margin-bottom: 26rem;
-  /* margin doesn't work */
-  padding-right: 12rem;
 }
 
 button {
@@ -70,6 +67,7 @@ button {
 }
 
 .dropdown {
+  position: absolute;
   top: 0;
   left: 0;
 }
