@@ -76,7 +76,9 @@ export default function Game() {
             aria-label={click}
             key={i}
             className="click"
-            style={{ transform: `translate(${click[0]}px,${click[1]}px)` }}
+            style={{
+              transform: `translate(${click[0] - 20}px,${click[1] - 20}px)`,
+            }}
           >
             <Circle size={48} strokeWidth={4} color="white" />
           </li>
