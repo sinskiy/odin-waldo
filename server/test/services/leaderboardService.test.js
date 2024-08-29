@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, expect, test } from "@jest/globals";
+import { afterAll, beforeAll, describe, expect, it } from "@jest/globals";
 import pool from "../../src/configs/db.js";
 import { getLeaderboardByTime } from "../../src/services/leaderboardService.js";
 
@@ -13,16 +13,20 @@ beforeAll(async () => {
   }
 });
 
-test("Get matching targets correctly", async () => {
-  const target = await getLeaderboardByTime();
-  expect(target).toStrictEqual([
-    { username: "bot", time: 1 },
-    { username: "sinskiy", time: 20 },
-    { username: "kilwinta", time: 200 },
-  ]);
+describe("get matching targets correctly", () => {
+  it("get full leaderboard correctly", async () => {
+    const target = await getLeaderboardByTime();
+    expect(target).toStrictEqual([
+      { username: "bot", time: 1 },
+      { username: "sinskiy", time: 20 },
+      { username: "kilwinta", time: 200 },
+    ]);
+  });
 
-  const target2 = await getLeaderboardByTime(1);
-  expect(target2).toStrictEqual([{ username: "bot", time: 1 }]);
+  it("get leaderboard with limit correctly", async () => {
+    const target2 = await getLeaderboardByTime(1);
+    expect(target2).toStrictEqual([{ username: "bot", time: 1 }]);
+  });
 });
 
 afterAll(async () => {
