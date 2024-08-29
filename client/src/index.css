@@ -37,6 +37,62 @@ body {
   background-color: var(--background);
   color: var(--text);
   accent-color: var(--primary);
+
+  margin: 0 12rem 26rem 0;
+}
+
+button {
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: var(--rounded);
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-weight: 500;
+}
+
+/* global classes */
+.card {
+  padding: 1rem;
+  width: fit-content;
+  border: 1px solid var(--outline);
+  border-radius: var(--rounded-card);
+  background-color: var(--surface);
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.5),
+    0 4px 6px -4px rgb(0 0 0 / 0.5);
+}
+
+.dropdown {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.targets-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.image-select {
+  position: relative;
+}
+
+.image-select figure {
+  border-radius: var(--rounded-card);
+  padding: 0.5rem;
+}
+.image-select img {
+  max-height: 5rem;
+  margin: auto;
+}
+
+.image-select > input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+.image-select > input:checked + label > figure {
+  outline: 5px solid var(--primary);
 }
 
 /* dark mode variables */
