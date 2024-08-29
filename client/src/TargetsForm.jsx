@@ -1,10 +1,10 @@
 import { arrayOf, func, number, string } from "prop-types";
 import Target from "./Target";
 
-const TargetsForm = ({ x, y, fetchData, guessed }) => {
+const TargetsForm = ({ agnosticCoords, fetchData, guessed }) => {
   function handleSubmit(event) {
     event.preventDefault();
-    fetchData(`/target?x=${x}&y=${y}`);
+    fetchData(`/target?x=${agnosticCoords[0]}&y=${agnosticCoords[1]}`);
   }
   const targets = [
     {
@@ -39,8 +39,7 @@ const TargetsForm = ({ x, y, fetchData, guessed }) => {
   );
 };
 TargetsForm.propTypes = {
-  x: number,
-  y: number,
+  agnosticCoords: arrayOf(number),
   fetchData: func,
   guessed: arrayOf(string),
 };

@@ -75,6 +75,13 @@ dialog h2 {
   min-width: 1890px;
 }
 
+.click {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 4px 4px black);
+}
+
 .topbar {
   position: fixed;
   top: 1rem;

@@ -3,6 +3,7 @@ import Dropdown from "./Dropdown";
 import TargetsForm from "./TargetsForm";
 import useFetch from "./useFetch";
 import AddToLeaderboard from "./AddToLeaderboard";
+import { Check, X } from "lucide-react";
 
 const EXPECTED_WIDTH = 3000;
 const EXPECTED_HEIGHT = 2000;
@@ -13,8 +14,17 @@ export default function Game() {
   const [dropdownShown, setDropdownShown] = useState(false);
   const [dropdownCoords, setDropdownCoords] = useState([0, 0]);
   const [agnosticCoords, setAgnosticCoords] = useState([null, null]);
+  const [clickCoordsHistory, setClickCoordsHistory] = useState([]);
 
   const { data, error, fetchData } = useFetch();
+  function getTarget() {
+    fetchData();
+    setClickCoordsHistory((history) => [
+      ...history,
+      [...dropdownCoords, data ? true : false],
+    ]);
+  }
+
   const [guessed, setGuessed] = useState([]);
   if (data && !guessed.includes(data.name)) {
     setGuessed([...guessed, data.name]);
@@ -50,17 +60,36 @@ export default function Game() {
         onClick={handleClick}
         className="game-image"
       />
+      <ul aria-label="clicks history">
+        {clickCoordsHistory.map((click, i) => (
+          <li
+            aria-label={
+              click.slice(0, -1) + `, ${click[2] ? "match" : "not match"}`
+            }
+            key={i}
+            className="click"
+            style={{ transform: `translate(${click[0]}px,${click[1]}px)` }}
+          >
+            {click[2] ? (
+              <Check size={36} strokeWidth={6} color="rgb(0 255 0)" />
+            ) : (
+              <X size={48} strokeWidth={4} color="red" fill="red" />
+            )}
+          </li>
+        ))}
+      </ul>
       <div className="topbar">
         <div className="card topbar-entry" aria-live="polite">
           {guessed.length}/3
         </div>
       </div>
       {dropdownShown && (
-        <Dropdown x={dropdownCoords[0]} y={dropdownCoords[1]}>
+        <Dropdown dropdownCoords={dropdownCoords}>
           <TargetsForm
-            x={agnosticCoords[0]}
-            y={agnosticCoords[1]}
-            fetchData={fetchData}
+            agnosticCoords={agnosticCoords}
+            dropdownCoords={dropdownCoords}
+            setClickCoordsHistory={setClickCoordsHistory}
+            fetchData={getTarget}
             guessed={guessed}
           />
         </Dropdown>

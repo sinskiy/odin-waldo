@@ -1,18 +1,19 @@
-import { node, number } from "prop-types";
+import { arrayOf, node, number } from "prop-types";
 
-const Dropdown = ({ x, y, children }) => {
+const Dropdown = ({ dropdownCoords, children }) => {
   return (
     <div
       className="card dropdown"
-      style={{ transform: `translate(${x}px, ${y}px)` }}
+      style={{
+        transform: `translate(${dropdownCoords[0]}px, ${dropdownCoords[1]}px)`,
+      }}
     >
       {children}
     </div>
   );
 };
 Dropdown.propTypes = {
-  x: number,
-  y: number,
+  dropdownCoords: arrayOf(number),
   children: node,
 };
 
