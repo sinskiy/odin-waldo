@@ -12,6 +12,11 @@ export default function Game() {
   const [agnosticCoords, setAgnosticCoords] = useState([null, null]);
 
   const { data, error, fetchData } = useFetch();
+  const [guessed, setGuessed] = useState([]);
+  if (data && !guessed.includes(data.name)) {
+    setGuessed([...guessed, data.name]);
+  }
+
   function handleClick(event) {
     setDropdownShown(!dropdownShown);
     setDropdownCoords(getDropdownCoords(event));
@@ -45,6 +50,7 @@ export default function Game() {
             x={agnosticCoords[0]}
             y={agnosticCoords[1]}
             fetchData={fetchData}
+            guessed={guessed}
           />
         </Dropdown>
       )}

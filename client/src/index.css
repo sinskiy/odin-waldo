@@ -70,7 +70,6 @@ button {
 }
 
 .dropdown {
-  position: fixed;
   top: 0;
   left: 0;
 }
@@ -102,6 +101,9 @@ button {
 }
 .image-select > input:checked + label > figure {
   outline: 5px solid var(--primary);
+}
+.image-select > input:disabled + label > figure {
+  opacity: 0.5;
 }
 
 /* dark mode variables */
