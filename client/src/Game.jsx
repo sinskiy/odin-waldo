@@ -11,6 +11,9 @@ const EXPECTED_HEIGHT = 2000;
 
 export default function Game() {
   const dialogRef = useRef(null);
+  function closeDialog() {
+    dialogRef.current?.close();
+  }
 
   const timerRef = useRef(null);
   const [time, setTime] = useState(0);
@@ -97,7 +100,7 @@ export default function Game() {
         </Dropdown>
       )}
       <dialog ref={dialogRef}>
-        <AddToLeaderboard timeMs={time} />
+        <AddToLeaderboard timeMs={time} closeDialog={closeDialog} />
       </dialog>
     </div>
   );
