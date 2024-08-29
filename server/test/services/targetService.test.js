@@ -13,16 +13,16 @@ beforeAll(async () => {
 });
 
 test("Get matching targets correctly", async () => {
-  const target = await getMatchingTarget({ x: 1, y: 1 });
-  expect(target).toEqual({ target: "(100,100),(0,0)" });
+  const target = await getMatchingTarget(1, 1);
+  expect(target).toEqual({ name: "test1" });
 
-  const target2 = await getMatchingTarget({ x: 500, y: 500 });
-  expect(target2).toEqual({ target: "(500,500),(500,500)" });
+  const target2 = await getMatchingTarget(500, 500);
+  expect(target2).toEqual({ name: "test3" });
 
-  const target3 = await getMatchingTarget({ x: 600, y: 600 });
+  const target3 = await getMatchingTarget(600, 600);
   expect(target3).toBeUndefined();
 
-  const target4 = await getMatchingTarget({ x: 301, y: 350 });
+  const target4 = await getMatchingTarget(301, 350);
   expect(target4).toBeUndefined();
 });
 

@@ -1,9 +1,9 @@
-import pool from "../configs/db";
+import pool from "../configs/db.js";
 
 export async function getMatchingTarget(x, y) {
   const point = `(${x},${y})`;
   const result = await pool.query(
-    "SELECT target FROM targets WHERE target @> $1::point",
+    "SELECT name FROM targets WHERE coords @> $1::point",
     [point],
   );
 
