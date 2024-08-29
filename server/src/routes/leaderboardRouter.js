@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   leaderboardGet,
   leaderboardPost,
-} from "../controllers/leaderboardController";
+} from "../controllers/leaderboardController.js";
 const leaderboardRouter = Router();
 
 leaderboardRouter.get("/", leaderboardGet);
