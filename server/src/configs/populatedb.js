@@ -22,8 +22,7 @@ INSERT INTO targets VALUES ('((2137,1850),(2185,1915))', 'leinster-coat-of-arms'
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString:
-      "postgresql://top_users_owner:8HMwmsRvC6PN@ep-long-dust-a211r0mi.eu-central-1.aws.neon.tech/odin_waldo?sslmode=require",
+    connectionString: process.env.DATABASE_URL,
   });
   await client.connect();
   await client.query(SQL);
