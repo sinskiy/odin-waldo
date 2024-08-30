@@ -4,7 +4,13 @@ import classes from "./Target.module.css";
 const Target = ({ label, src, text, disabled }) => {
   return (
     <div className={classes.imageSelect}>
-      <input type="radio" name="target" id={label} disabled={disabled} />
+      <input
+        type="radio"
+        name="target"
+        id={label}
+        value={label}
+        disabled={disabled}
+      />
       <label htmlFor={label}>
         <figure>
           <img src={src} alt="" />

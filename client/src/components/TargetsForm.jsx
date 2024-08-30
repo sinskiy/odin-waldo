@@ -4,7 +4,10 @@ import Target from "./Target";
 const TargetsForm = ({ agnosticCoords, fetchData, guessed }) => {
   function handleSubmit(event) {
     event.preventDefault();
-    fetchData(`/target?x=${agnosticCoords[0]}&y=${agnosticCoords[1]}`);
+    const formData = new FormData(event.target);
+    fetchData(
+      `/target?x=${agnosticCoords[0]}&y=${agnosticCoords[1]}&name=${formData.get("target")}`,
+    );
   }
   const targets = [
     {
