@@ -3,9 +3,9 @@ import Dropdown from "./Dropdown";
 import TargetsForm from "./TargetsForm";
 import useFetch from "./useFetch";
 import AddToLeaderboard from "./AddToLeaderboard";
-import { Circle } from "lucide-react";
 import formattedTime from "./lib/time";
-import { func } from "prop-types";
+import { arrayOf, func, number, string } from "prop-types";
+import Clicks from "./Clicks";
 
 const EXPECTED_WIDTH = 3000;
 const EXPECTED_HEIGHT = 2000;
@@ -79,37 +79,8 @@ const Game = ({ setRoute }) => {
         onClick={handleClick}
         className="game-image"
       />
-      <ul aria-label="clicks history">
-        {clickCoordsHistory.map((click, i) => (
-          <li
-            aria-label={click}
-            key={i}
-            className="click"
-            style={{
-              transform: `translate(${click[0] - 20}px,${click[1] - 20}px)`,
-            }}
-          >
-            <Circle size={48} strokeWidth={4} color="white" />
-          </li>
-        ))}
-      </ul>
-      <div className="topbar">
-        <div className="card topbar-entry" aria-live="polite">
-          {guessed.length}/3
-        </div>
-        <div className="card topbar-entry">{formattedTime(time)}</div>
-        <div
-          className="card topbar-entry"
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <button
-            onClick={() => setRoute("leaderboard")}
-            className="button-link"
-          >
-            leaderboard
-          </button>
-        </div>
-      </div>
+      <Clicks clickCoordsHistory={clickCoordsHistory} />
+      <GameHeader guessed={guessed} time={time} setRoute={setRoute} />
       {dropdownShown && (
         <Dropdown dropdownCoords={dropdownCoords}>
           <TargetsForm
@@ -128,6 +99,30 @@ const Game = ({ setRoute }) => {
   );
 };
 Game.propTypes = {
+  setRoute: func,
+};
+
+const GameHeader = ({ guessed, time, setRoute }) => {
+  return (
+    <header className="topbar">
+      <div className="card topbar-entry" aria-live="polite">
+        {guessed.length}/3
+      </div>
+      <div className="card topbar-entry">{formattedTime(time)}</div>
+      <nav
+        className="card topbar-entry"
+        style={{ display: "flex", alignItems: "center" }}
+      >
+        <button onClick={() => setRoute("leaderboard")} className="button-link">
+          leaderboard
+        </button>
+      </nav>
+    </header>
+  );
+};
+GameHeader.propTypes = {
+  guessed: arrayOf(string),
+  time: number,
   setRoute: func,
 };
 
