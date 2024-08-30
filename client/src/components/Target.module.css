@@ -1,0 +1,26 @@
+.image-select {
+  position: relative;
+}
+
+.image-select figure {
+  border-radius: var(--rounded-card);
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.image-select img {
+  width: 100%;
+  max-height: 7rem;
+  margin-bottom: 0.5rem;
+}
+
+.image-select > input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+.image-select > input:checked + label > figure {
+  outline: 5px solid var(--primary);
+}
+.image-select > input:disabled + label > figure {
+  opacity: 0.5;
+}

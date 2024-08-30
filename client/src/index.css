@@ -132,54 +132,6 @@ dialog h2 {
   gap: 1rem;
 }
 
-.image-select {
-  position: relative;
-}
-
-.image-select figure {
-  border-radius: var(--rounded-card);
-  padding: 0.5rem;
-  font-size: 1rem;
-}
-.image-select img {
-  width: 100%;
-  max-height: 7rem;
-  margin-bottom: 0.5rem;
-}
-
-.image-select > input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-}
-.image-select > input:checked + label > figure {
-  outline: 5px solid var(--primary);
-}
-.image-select > input:disabled + label > figure {
-  opacity: 0.5;
-}
-
-.add-to-leaderboard {
-  display: grid;
-  gap: 1rem;
-}
-.input-entry {
-  display: grid;
-  gap: 0.5rem;
-}
-.input-entry > input {
-  padding: 0.5rem 2rem;
-  border: none;
-  outline: 1px solid var(--outline);
-  background-color: var(--surface-high);
-  color: var(--text);
-  border-radius: var(--rounded-card);
-  font-size: 2rem;
-}
-.input-entry > input:focus {
-  outline: 2px solid var(--primary);
-}
-
 /* dark mode variables */
 @media screen and (prefers-color-scheme: dark) {
   :root {

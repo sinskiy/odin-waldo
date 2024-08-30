@@ -1,8 +1,9 @@
 import { bool, string } from "prop-types";
+import classes from "./Target.module.css";
 
 const Target = ({ label, src, text, disabled }) => {
   return (
-    <div className="image-select">
+    <div className={classes.imageSelect}>
       <input type="radio" name="target" id={label} disabled={disabled} />
       <label htmlFor={label}>
         <figure>

@@ -1,6 +1,7 @@
 import { func, number } from "prop-types";
 import formattedTime from "../lib/time";
 import useFetch from "../hooks/useFetch";
+import classes from "./AddToLeaderboard.module.css";
 
 const AddToLeaderboard = ({ timeMs, closeDialog }) => {
   const { error, isLoading, fetchData } = useFetch();
@@ -9,7 +10,6 @@ const AddToLeaderboard = ({ timeMs, closeDialog }) => {
     closeDialog();
 
     const formData = new FormData(event.target);
-    console.log(timeMs);
     fetchData("/leaderboard", {
       method: "post",
       headers: { "Content-Type": "application/json; charset=UTF-8" },
@@ -20,12 +20,12 @@ const AddToLeaderboard = ({ timeMs, closeDialog }) => {
     });
   }
   return (
-    <form onSubmit={handleSubmit} method="post" className="add-to-leaderboard">
+    <form onSubmit={handleSubmit} method="post" className={classes.form}>
       {error && <p>{error}</p>}
       <h2>
         your time is <em>{formattedTime(timeMs)}</em>
       </h2>
-      <div className="input-entry">
+      <div className={classes.inputEntry}>
         <label htmlFor="username">username</label>
         <input
           type="text"
