@@ -1,4 +1,4 @@
-import { Check, Circle, X } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { arrayOf, object } from "prop-types";
 
 const Clicks = ({ clickCoordsHistory }) => {
