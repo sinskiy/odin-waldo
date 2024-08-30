@@ -1,5 +1,5 @@
 import { Check, X } from "lucide-react";
-import { arrayOf, object } from "prop-types";
+import { array, arrayOf } from "prop-types";
 
 const Clicks = ({ clickCoordsHistory }) => {
   return (
@@ -24,7 +24,7 @@ const Clicks = ({ clickCoordsHistory }) => {
   );
 };
 Clicks.propTypes = {
-  clickCoordsHistory: arrayOf(object),
+  clickCoordsHistory: arrayOf(array),
 };
 
 export default Clicks;
