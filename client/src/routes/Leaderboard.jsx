@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import useFetch from "./useFetch";
-import "./leaderboard.css";
-import formattedTime from "./lib/time";
+import useFetch from "../hooks/useFetch";
+import "../leaderboard.css";
+import formattedTime from "../lib/time";
 import { ArrowBigRight } from "lucide-react";
 import { func } from "prop-types";
 

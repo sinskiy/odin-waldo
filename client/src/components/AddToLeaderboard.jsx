@@ -1,6 +1,6 @@
 import { func, number } from "prop-types";
-import formattedTime from "./lib/time";
-import useFetch from "./useFetch";
+import formattedTime from "../lib/time";
+import useFetch from "../hooks/useFetch";
 
 const AddToLeaderboard = ({ timeMs, closeDialog }) => {
   const { error, isLoading, fetchData } = useFetch();

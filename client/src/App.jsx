@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Game from "./Game";
-import Leaderboard from "./Leaderboard";
+import Game from "./routes/Game";
+import Leaderboard from "./routes/Leaderboard";
 
 export default function App() {
   const [route, setRoute] = useState("game");

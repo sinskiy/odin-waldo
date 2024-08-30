@@ -1,16 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import Dropdown from "./Dropdown";
-import TargetsForm from "./TargetsForm";
-import useFetch from "./useFetch";
-import AddToLeaderboard from "./AddToLeaderboard";
-import formattedTime from "./lib/time";
+import Dropdown from "../components/Dropdown";
+import TargetsForm from "../components/TargetsForm";
+import useFetch from "../hooks/useFetch";
+import AddToLeaderboard from "../components/AddToLeaderboard";
+import formattedTime from "../lib/time";
 import { arrayOf, func, number, string } from "prop-types";
-import Clicks from "./Clicks";
+import Clicks from "../components/Clicks";
 
 const EXPECTED_WIDTH = 3000;
 const EXPECTED_HEIGHT = 2000;
-
-// ! this is awful, but this project isn't interesting enough for me to refactor it. I'm sorry
 
 const Game = ({ setRoute }) => {
   const dialogRef = useRef(null);
