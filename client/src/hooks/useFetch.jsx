@@ -27,6 +27,7 @@ export default function useFetch() {
       }
       setData(data);
       setError(null);
+      return data;
     } catch (err) {
       setData(null);
       setError(err.message);

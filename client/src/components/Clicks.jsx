@@ -1,4 +1,4 @@
-import { Circle } from "lucide-react";
+import { Check, Circle, X } from "lucide-react";
 import { arrayOf, object } from "prop-types";
 
 const Clicks = ({ clickCoordsHistory }) => {
@@ -13,7 +13,11 @@ const Clicks = ({ clickCoordsHistory }) => {
             transform: `translate(${click[0] - 20}px,${click[1] - 20}px)`,
           }}
         >
-          <Circle size={48} strokeWidth={4} color="white" />
+          {click[2] ? (
+            <Check size={48} strokeWidth={4} color="#00ff00" />
+          ) : (
+            <X size={48} strokeWidth={4} color="red" />
+          )}
         </li>
       ))}
     </ul>

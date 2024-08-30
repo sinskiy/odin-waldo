@@ -33,7 +33,12 @@ const Game = ({ setRoute }) => {
   const { data, fetchData } = useFetch();
   function getTarget(...args) {
     setClickCoordsHistory([...clickCoordsHistory, dropdownCoords]);
-    fetchData(...args);
+    fetchData(...args).then((value) => {
+      setClickCoordsHistory([
+        ...clickCoordsHistory,
+        [...dropdownCoords, value],
+      ]);
+    });
   }
 
   const [guessed, setGuessed] = useState([]);
