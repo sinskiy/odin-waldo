@@ -60,9 +60,11 @@ const Game = ({ setRoute }) => {
   if (data && !guessed.includes(data.name)) {
     setGuessed([...guessed, data.name]);
   }
-  if (guessed.length === 1) {
+  if (guessed.length === 3) {
     dialogRef.current?.showModal();
+    setDropdownShown(false);
     clearInterval(timerRef.current);
+
     if (!finished) {
       setFinished(true);
       fetchToken("/timer", {
