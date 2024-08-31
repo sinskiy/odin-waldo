@@ -62,10 +62,10 @@ const Game = ({ setRoute }) => {
   }
   if (guessed.length === 3) {
     dialogRef.current?.showModal();
-    setDropdownShown(false);
     clearInterval(timerRef.current);
 
     if (!finished) {
+      setDropdownShown(false);
       setFinished(true);
       fetchToken("/timer", {
         headers: { Authorization: `Bearer ${timerData?.token}` },
