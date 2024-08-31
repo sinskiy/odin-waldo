@@ -1,9 +1,14 @@
-import { func, number } from "prop-types";
+import { bool, func, number, string } from "prop-types";
 import formattedTime from "../lib/time";
 import useFetch from "../hooks/useFetch";
 import classes from "./AddToLeaderboard.module.css";
 
-const AddToLeaderboard = ({ timeMs, closeDialog }) => {
+const AddToLeaderboard = ({
+  timeMs,
+  isTimeLoading,
+  timeError,
+  closeDialog,
+}) => {
   const { error, isLoading, fetchData } = useFetch();
   function handleSubmit(event) {
     event.preventDefault();
@@ -19,11 +24,16 @@ const AddToLeaderboard = ({ timeMs, closeDialog }) => {
       }),
     });
   }
+  if (timeError) {
+    return <p>sorry, there was an error: {timeError}</p>;
+  }
+
   return (
     <form onSubmit={handleSubmit} method="post" className={classes.form}>
       {error && <p>{error}</p>}
       <h2>
-        your time is <em>{formattedTime(timeMs)}</em>
+        your time is{" "}
+        <em>{isTimeLoading ? "loading..." : formattedTime(timeMs)}</em>
       </h2>
       <div className={classes.inputEntry}>
         <label htmlFor="username">username</label>
@@ -45,6 +55,8 @@ const AddToLeaderboard = ({ timeMs, closeDialog }) => {
 AddToLeaderboard.propTypes = {
   timeMs: number,
   closeDialog: func,
+  isTimeLoading: bool,
+  timeError: string,
 };
 
 export default AddToLeaderboard;

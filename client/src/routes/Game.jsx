@@ -25,6 +25,21 @@ const Game = ({ setRoute }) => {
     return () => clearInterval(timer);
   }, []);
 
+  const {
+    data: timerData,
+    error,
+    isLoading,
+    fetchData: fetchToken,
+  } = useFetch();
+  useEffect(() => {
+    fetchToken("/timer");
+  }, []);
+  useEffect(() => {
+    if (timerData?.token) {
+      localStorage.setItem("token", timerData.token);
+    }
+  }, [timerData]);
+
   const [dropdownShown, setDropdownShown] = useState(false);
   const [dropdownCoords, setDropdownCoords] = useState([0, 0]);
   const [agnosticCoords, setAgnosticCoords] = useState([null, null]);
@@ -45,11 +60,16 @@ const Game = ({ setRoute }) => {
   if (data && !guessed.includes(data.name)) {
     setGuessed([...guessed, data.name]);
   }
-  if (guessed.length === 3) {
+  if (guessed.length === 1) {
     dialogRef.current?.showModal();
     clearInterval(timerRef.current);
     if (!finished) {
       setFinished(true);
+      fetchToken("/timer", {
+        headers: { Authorization: `Bearer ${timerData?.token}` },
+      }).then((value) => {
+        setTime(value?.time);
+      });
     }
   }
 
@@ -96,7 +116,12 @@ const Game = ({ setRoute }) => {
         </Dropdown>
       )}
       <dialog ref={dialogRef}>
-        <AddToLeaderboard timeMs={time} closeDialog={closeDialog} />
+        <AddToLeaderboard
+          timeMs={time}
+          isTimeLoading={isLoading}
+          timeError={error}
+          closeDialog={closeDialog}
+        />
       </dialog>
     </div>
   );
